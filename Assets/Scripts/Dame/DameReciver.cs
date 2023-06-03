@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(BoxCollider2D))]
-public class DameReciver : MyMonoBehaviour
+public abstract class DameReciver : MyMonoBehaviour
 {
     [SerializeField] protected float maxHp;
     [SerializeField] protected float currentHp;
-
-
+    protected virtual void FixedUpdate()
+    {
+   this.Dead(CanDead());
+    }
     public float MaxHp => maxHp;
      public float CurrentHp => currentHp;
 
@@ -31,4 +33,9 @@ public class DameReciver : MyMonoBehaviour
         base.LoadComponents();
         this.Reborn();
     }
+    protected virtual void Dead (bool CanDead)
+    {
+       if(CanDead) Loader.Load(Loader.Scene.DeadScene);
+    }
+    protected abstract bool CanDead();
 }

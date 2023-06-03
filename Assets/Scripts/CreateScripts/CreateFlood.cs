@@ -2,27 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CreateFlood : MonoBehaviour
+public class CreateFlood : MyMonoBehaviour
 {
-    public int flood_gate;
-    BoxCollider2D box;
+    protected int flood_gate;
+    protected BoxCollider2D box;
     [SerializeField] protected Transform start,end;
-    private void Start()
+    protected override void Start()
     {
         box = GetComponent<BoxCollider2D>();
         flood_gate = 1;
     }
-    private void Update()
-    {
-        this.FloodComming();
-    }
-    private void FloodComming(){      
-            if (Flood.Instance.transform.position.y >= end.position.y - 0.1f && Flood.Instance.transform.position.y >= end.position.y + 0.1f)
-            {
-                Flood.Instance.flooding = false;
-            }
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected void OnTriggerEnter2D(Collider2D collision)
     {
 
         if (flood_gate == 1)

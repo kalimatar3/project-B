@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1751212059119941117}
   - component: {fileID: 58804385496135615}
-  - component: {fileID: 1797614653036654974}
+  - component: {fileID: 5008384098824359157}
   m_Layer: 0
   m_Name: SatchelOutExplosion
   m_TagString: Untagged
@@ -64,7 +64,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1797614653036654974
+--- !u!114 &5008384098824359157
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

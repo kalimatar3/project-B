@@ -59,7 +59,7 @@ public class GrapplingGun : MyMonoBehaviour
 }
     protected void DrawGrapplingRope()
     {
-    tachtrongluc = tachluc(new Vector2(0, -50f), BulletPos);
+    tachtrongluc = VectorSerapation(new Vector2(0, -50f), BulletPos);
     if (Bullet != null)
         {
             DrawRopeWave();
@@ -166,26 +166,26 @@ public class GrapplingGun : MyMonoBehaviour
         MyBody.velocity = new Vector2(0, 0);
         yield return new WaitForSeconds(0.5f);
     }
-    Vector2  tachluc(Vector2 bitach, Vector2 huong1)
+    Vector2  VectorSerapation(Vector2 Vector, Vector2 Argument) // tach vector " Vector" thanh cac vector trong do co vector "Argument" la vector cung huong voi vector trong luc
     {
-        Vector2 h = new Vector2(Mathf.Sqrt(Vector2.SqrMagnitude(bitach)) * huong1.x / Mathf.Sqrt(Vector2.SqrMagnitude(huong1)), Mathf.Sqrt(Vector2.SqrMagnitude(bitach)) * huong1.y / Mathf.Sqrt(Vector2.SqrMagnitude(huong1)));
+        Vector2 h = new Vector2(Mathf.Sqrt(Vector2.SqrMagnitude(Vector)) * Argument.x / Mathf.Sqrt(Vector2.SqrMagnitude(Argument)), Mathf.Sqrt(Vector2.SqrMagnitude(Vector)) * Argument.y / Mathf.Sqrt(Vector2.SqrMagnitude(Argument)));
         Vector2 p;
         float xtt, ytt;
-        float Alpha = (Vector2.Angle(-huong1,bitach)* Mathf.PI)/180;
-        float Beta = (Vector2.Angle(huong1, new Vector2(0, huong1.y)) *Mathf.PI)/180;
+        float Alpha = (Vector2.Angle(-Argument,Vector)* Mathf.PI)/180;
+        float Beta = (Vector2.Angle(Argument, new Vector2(0, Argument.y)) *Mathf.PI)/180;
         if (Alpha>Beta - 0.1f&& Alpha<Beta+0.1f)
         {
-            xtt = Mathf.Sqrt(Mathf.Abs((Vector2.SqrMagnitude(bitach)))) * Mathf.Sin(Alpha) * Mathf.Sin(Mathf.PI / 2 - Beta);
-            ytt = -1*Mathf.Sqrt(Mathf.Abs((Vector2.SqrMagnitude(bitach)))) * Mathf.Sin(Alpha) * Mathf.Cos(Mathf.PI/ 2 - Beta);
+            xtt = Mathf.Sqrt(Mathf.Abs((Vector2.SqrMagnitude(Vector)))) * Mathf.Sin(Alpha) * Mathf.Sin(Mathf.PI / 2 - Beta);
+            ytt = -1*Mathf.Sqrt(Mathf.Abs((Vector2.SqrMagnitude(Vector)))) * Mathf.Sin(Alpha) * Mathf.Cos(Mathf.PI/ 2 - Beta);
         }
         else
        {
-            xtt = -1*Mathf.Sqrt(Mathf.Abs((Vector2.SqrMagnitude(bitach)))) * Mathf.Sin(Alpha) * Mathf.Sin(Mathf.PI/ 2 - Beta);
-            ytt = Mathf.Sqrt(Mathf.Abs((Vector2.SqrMagnitude(bitach)))) * Mathf.Sin(Alpha) * Mathf.Cos(Mathf.PI / 2 - Beta);
+            xtt = -1*Mathf.Sqrt(Mathf.Abs((Vector2.SqrMagnitude(Vector)))) * Mathf.Sin(Alpha) * Mathf.Sin(Mathf.PI/ 2 - Beta);
+            ytt = Mathf.Sqrt(Mathf.Abs((Vector2.SqrMagnitude(Vector)))) * Mathf.Sin(Alpha) * Mathf.Cos(Mathf.PI / 2 - Beta);
         }
         if (BulletPos.y >= 0)
         {
-            if (h.x - bitach.x >= 0)
+            if (h.x - Vector.x >= 0)
             {
                 p = new Vector2(xtt, ytt);
             }
@@ -193,7 +193,7 @@ public class GrapplingGun : MyMonoBehaviour
         }
         else
         {
-            if (h.x - bitach.x >= 0)
+            if (h.x - Vector.x >= 0)
             {
                 p = new Vector2(-xtt, -ytt);
             }

@@ -65,18 +65,10 @@ public class PlayerMoving : MyMonoBehaviour
     protected void FixedUpdate()
     {  
         this.AnimationVariable();
-        StartCoroutine(Stunning());
-        if (gameObject.transform.parent.CompareTag("Stunning"))
-        {
-            this.Stun();
-        }
-        if(gameObject.transform.parent.CompareTag("Player"))
-        {
-            JumpHeight = MaxJumpHeight;
-            this.Move();
-            this.Jump();
-            this.Dash();
-        }
+        JumpHeight = MaxJumpHeight;
+        this.Move();
+        this.Jump();
+        this.Dash();
     }
     protected void Jump()
     {
@@ -90,11 +82,6 @@ public class PlayerMoving : MyMonoBehaviour
         if(Grounded)    Speed = LandSpeed;
         else            Speed = AirSpeed;
         MyBody.velocity = new Vector2(move * Speed, MyBody.velocity.y);
-    }
-    protected void Stun()
-    {
-        JumpHeight = 0;
-        move = 0;
     }
     protected void Dash()
     {
@@ -112,16 +99,6 @@ public class PlayerMoving : MyMonoBehaviour
     public void DoStun(float time)
     {
         StunTime = time;
-    }
-    protected IEnumerator Stunning()
-    {
-        if(StunTime != 0)
-        {
-            gameObject.transform.parent.tag = "Stunning";
-            yield return new WaitForSeconds(StunTime);
-            gameObject.transform.parent.tag = "Player";
-            StunTime = 0 ;
-        }
     }
     IEnumerator Jumping()
     {

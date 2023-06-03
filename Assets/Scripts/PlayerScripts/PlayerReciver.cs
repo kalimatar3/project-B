@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerReciver : DameReciver
 {
     protected float StunTime;
+    protected bool stun = false;
     public virtual void IsStuned( float time)
     {
         this.StunTime = time;
@@ -13,19 +14,23 @@ public class PlayerReciver : DameReciver
     {
         if(StunTime != 0)
         {
-            PlayerCtrl.Instance.GetComponent<SpringJoint2D>().enabled = false;
-            PlayerCtrl.Instance.PlayerMoving.gameObject.SetActive(false);
-            PlayerCtrl.Instance.PlayerSatchelOutScript.gameObject.SetActive(false);
-            PlayerCtrl.Instance.GrapplingGun.gameObject.SetActive(false);
+            stun = true;
             yield return new WaitForSeconds(StunTime);
-            PlayerCtrl.Instance.PlayerMoving.gameObject.SetActive(true);
-            PlayerCtrl.Instance.PlayerSatchelOutScript.gameObject.SetActive(true);
-            PlayerCtrl.Instance.GrapplingGun.gameObject.SetActive(true);
+            stun = false;
             StunTime = 0 ;
         }
-    }
-    protected virtual void FixedUpdate()
+    }    
+    protected override void FixedUpdate()
     {
-        this.StartCoroutine(Stunning());
+    base.FixedUpdate();
+    this.StartCoroutine(Stunning());
+    PlayerCtrl.Instance.PlayerMoving.gameObject.SetActive(!stun);
+    PlayerCtrl.Instance.PlayerSatchelOutScript.gameObject.SetActive(!stun);
+    PlayerCtrl.Instance.GrapplingGun.gameObject.SetActive(!stun);
+    }
+    protected override bool CanDead()
+    {
+        if( currentHp > 0) return false;
+        else return true;
     }
 }

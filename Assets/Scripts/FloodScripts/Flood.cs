@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Flood: MonoBehaviour
+public class Flood: MyMonoBehaviour
 {
     private static Flood instance;
     public static Flood Instance {get => instance;}
     public bool flooding;
     public float speed;
-    private void Awake()
+    protected override void Awake()
     {
         if (instance != null && instance != this)
         {
@@ -19,35 +19,12 @@ public class Flood: MonoBehaviour
             instance = this;
         }
     }
-    private void Start()
+    protected void FixedUpdate()
     {
-        speed = 5f ;
+        if(flooding)  this.FloodRunning();
     }
-    private void FixedUpdate()
+    protected void FloodRunning()
     {
-        this.FloodRunning();
-    }
-
-
-
-    private void FloodRunning(){
-
-        if (flooding)
-        {
-            transform.Translate(Vector3.up * speed * Time.deltaTime);
-        }
-    
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawRay(transform.position + new Vector3(-100,0,0), new Vector3(200,0,0));
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-     if(collision.tag == "Player" || collision.CompareTag("Stunning"))
-     {
-        PlayerDeadScript.Instance.DF = true;
-     }
+        this.transform.Translate(Vector3.up * Time.deltaTime * speed);    
     }
 }

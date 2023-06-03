@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5996934575466441200}
   - component: {fileID: 20485250445855724}
-  - component: {fileID: 1438194225870615904}
+  - component: {fileID: 2930836990215481779}
   m_Layer: 0
   m_Name: RockExplosion
   m_TagString: Untagged
@@ -64,7 +64,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1438194225870615904
+--- !u!114 &2930836990215481779
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -465,7 +465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33630747541736147840b64715f9a48c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Dame: 1
+  Dame: 0
   Stuntime: 0.25
   Force: 10
 --- !u!1 &3633890371973595532

@@ -12,8 +12,12 @@ public class Hpbar : BaseSlider
     }
     protected override void FixedUpdate()
     {
-        base.FixedUpdate();
         this.LoadHp();
+        base.FixedUpdate();
+        this.ShowingHP();
+    }
+    protected void ShowingHP()
+    {
         float HpPercent = ShowedCurrentHp/ShowedMaxHp;
         this.Slider.value = HpPercent;
     }

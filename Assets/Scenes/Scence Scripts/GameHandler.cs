@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,9 +6,9 @@ public class GameHandler : MonoBehaviour {
 
     [SerializeField] private Sprite unitSprite;
 
-    private GameObject unitGameObject;
+    protected GameObject unitGameObject;
 
-    private void Awake() {
+    protected void Awake() {
         // Very slow code, spawn lots of units
         float startTime = Time.realtimeSinceStartup;
         for (int i = 0; i < 50000; i++) {

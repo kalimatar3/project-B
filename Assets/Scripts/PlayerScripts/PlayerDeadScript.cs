@@ -24,9 +24,6 @@ public class PlayerDeadScript : MonoBehaviour
     {
         this.DeadbyFlood();
     }
-
-
-    
     private void DeadbyFlood()
     {
      if (DF == true)

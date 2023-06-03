@@ -12,12 +12,12 @@ public class RockManager : MyMonoBehaviour
     public float RockUpComingTime;
     protected float Timerunner;
     protected GameObject ThisTarget;
-    [SerializeField]protected Vector3 FallingZone;
+    protected Vector3 FallingZone;
+    protected int[] TakeStepArray  = new int[30];
     [SerializeField] protected float ScanStepTime;
     [SerializeField] protected float TakeStepCircle;
     [SerializeField] protected LayerMask StepLayer;
     [SerializeField] protected GameObject Target;
-    [SerializeField] protected int[] TakeStepArray  = new int[30];
     protected override void LoadComponents()
     {
         base.LoadComponents();
