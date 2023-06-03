@@ -5,21 +5,26 @@ using UnityEngine;
 [RequireComponent(typeof(BoxCollider2D))]
 public class DameReciver : MyMonoBehaviour
 {
-    [SerializeField] protected float MaxHp;
-    [SerializeField] protected float CurrentHp;
+    [SerializeField] protected float maxHp;
+    [SerializeField] protected float currentHp;
+
+
+    public float MaxHp => maxHp;
+     public float CurrentHp => currentHp;
+
     public virtual void ReducedHp(float Dame)
     {
-        CurrentHp -= Dame;
-        if(CurrentHp <= 0 ) CurrentHp = 0;
+        currentHp -= Dame;
+        if(currentHp <= 0 ) currentHp = 0;
     }
     public virtual void IncreacsedHp(float Dame)
     {
-        if(CurrentHp > MaxHp ) CurrentHp = MaxHp;
-        CurrentHp += Dame;
+        if(currentHp > maxHp ) currentHp = maxHp;
+        currentHp += Dame;
     }
     public virtual void Reborn()
     {
-        CurrentHp = MaxHp;
+        currentHp = maxHp;
     }
     protected override void LoadComponents()
     {

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerCtrl : MyMonoBehaviour
 {
+    public float a = 10;
     protected static PlayerCtrl instance;
     public static PlayerCtrl Instance => instance;
 
@@ -16,6 +17,18 @@ public class PlayerCtrl : MyMonoBehaviour
 
     [SerializeField] protected PlayerMoving playerMoving;
     public PlayerMoving PlayerMoving { get => playerMoving ; }
+    [SerializeField] protected PlayerReciver playerReciver;
+    public PlayerReciver PlayerReciver { get => playerReciver ; }
+
+    
+    protected override void LoadComponents()
+    {
+        base.LoadComponents();
+        playerMoving = GetComponentInChildren<PlayerMoving>();
+        grapplingGun = GetComponentInChildren<GrapplingGun>();
+        playerSatchelOutScript =  GetComponentInChildren<PlayerSatchelOutScript>();
+        playerReciver =  GetComponentInChildren<PlayerReciver>();
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -27,12 +40,5 @@ public class PlayerCtrl : MyMonoBehaviour
         {
             instance = this;
         }
-    }
-    protected override void LoadComponents()
-    {
-        base.LoadComponents();
-        playerMoving = GetComponentInChildren<PlayerMoving>();
-        grapplingGun = GetComponentInChildren<GrapplingGun>();
-        playerSatchelOutScript =  GetComponentInChildren<PlayerSatchelOutScript>();
     }
 }

@@ -5,10 +5,6 @@ using UnityEngine;
 public class PlayerReciver : DameReciver
 {
     protected float StunTime;
-    public override void ReducedHp(float Dame)
-    {
-        base.ReducedHp(Dame);
-    }
     public virtual void IsStuned( float time)
     {
         this.StunTime = time;
@@ -28,7 +24,7 @@ public class PlayerReciver : DameReciver
             StunTime = 0 ;
         }
     }
-    protected void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         this.StartCoroutine(Stunning());
     }
